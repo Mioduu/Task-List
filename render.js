@@ -42,7 +42,10 @@ const renderList = () => {
     taskListContainer = document.createElement("div")
 
     taskList.forEach((taskText, index) => {
-
+        let data = new Date()
+        let dzien = data.getUTCDate()
+        let miesiac = data.getUTCMonth() + 1
+        let rok = data.getUTCFullYear()
         const taskItem = document.createElement("div")
         taskItem.style.display = "flex"
         taskItem.style.alignItems = "center"
@@ -50,7 +53,7 @@ const renderList = () => {
         taskItem.style.marginTop = "5px"
 
         const taskTextElement = document.createElement("span")
-        taskTextElement.innerHTML = `- ${taskText}`
+        taskTextElement.innerHTML = `- ${taskText} Data dodania: ${dzien} / ${miesiac} / ${rok}`
 
         const removeButton = document.createElement("button")
         removeButton.textContent = "Remove"
