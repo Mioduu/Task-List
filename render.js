@@ -17,7 +17,7 @@ try {
 button.onclick = () => {
     inputValue = input.value.trim()
     if(inputValue !== "") {
-        taskList.push(inputValue + "<br>")
+        taskList.push(inputValue)
         renderList()
         input.value = ""
     } else {
@@ -25,12 +25,6 @@ button.onclick = () => {
     }
 }
 
-
-
-deleteTask.onclick = () => {
-    taskList.pop()
-    renderList()
-}
 
 const removeTask = (index) => {
     taskList.splice(index, 1)
@@ -46,6 +40,8 @@ const renderList = () => {
         let dzien = data.getUTCDate()
         let miesiac = data.getUTCMonth() + 1
         let rok = data.getUTCFullYear()
+        let dataDodania = "Data dodania: "
+
         const taskItem = document.createElement("div")
         taskItem.style.display = "flex"
         taskItem.style.alignItems = "center"
@@ -53,11 +49,16 @@ const renderList = () => {
         taskItem.style.marginTop = "5px"
 
         const taskTextElement = document.createElement("span")
-        taskTextElement.innerHTML = `- ${taskText} Data dodania: ${dzien} / ${miesiac} / ${rok}`
+        taskTextElement.innerHTML = `- ${taskText}
+        <span style="font-size: 12px; color: gray;">${dataDodania}
+        <span style="font-size: 14px; font-weight: bold;">${dzien}</span> /
+        <span style="font-size: 14px; font-weight: bold;">${miesiac}</span> /
+        <span style="font size: 14px; font-weight: bold;">${rok}</span>
+        </span>`;
 
         const removeButton = document.createElement("button")
         removeButton.textContent = "Remove"
-        removeButton.style.background = "rgb(139, 116, 146)"
+        removeButton.style.background = "#D63031"
         removeButton.style.color = "white"
         removeButton.style.border = "none"
         removeButton.style.width = "100px"

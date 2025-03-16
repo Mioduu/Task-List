@@ -1,5 +1,5 @@
 body {
-    background: #1a1a2e;
+    background: #181A1B
 }
 
 .container {
@@ -12,24 +12,24 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left: auto;
-    margin-right: auto;
     height: 50px;
-    width: 500px;
+    width: 350px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     border-radius: 10px;
-    border: 100;
+    border: 100px;
+    font-size: x-large;
 }
 
 #button {
     order: 1;
     height: 50px;
     width: 250px;
-    background-color: rgb(0, 0, 0);
+    background-color: #2BAE66;
     font-size: 30px;
     color: white;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border: inset;
+    border: 100px;
+    border-radius: 10px;
     
 }
 
@@ -37,48 +37,27 @@ body {
     order: 1;
     height: 50px;
     width: 250px;
-    background-color: white;
+    background-color: #1E7A63;
     font-size: 30px;
     color: black;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border: inset;
-    cursor: pointer;
-}
-
-#delete {
-    order: 2;
-    height: 50px;
-    width: 250px;
-    background-color: rgb(0, 0, 0);
-    font-size: 30px;
-    color: white;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border: inset;
-
-}
-
-#delete:hover {
-    order: 2;
-    height: 50px;
-    width: 250px;
-    background-color: rgb(255, 255, 255);
-    font-size: 30px;
-    color: rgb(255, 0, 0);
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    border: inset;
+    border: 100px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
 #task {
-    color: rgb(139, 116, 146);
-    font-size: 75px;
+    color: #3498DB;
+    font-size: 50px;
     border: inset;
+    border-color: #3B4048;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 #title {
     display: flex;
     justify-content: center;
-    font-size: 50px;
+    font-size: 75px;
     color: rgb(255, 255, 255);
-    text-shadow: rgb(190, 24, 24) 1px 0 10px
+    text-shadow: rgb(190, 2, 2) 1px 0 10px
 }
