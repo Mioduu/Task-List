@@ -47,6 +47,7 @@ body {
 }
 
 #task {
+    margin-left: 85px;
     color: #3498DB;
     font-size: 50px;
     border: inset;
@@ -60,4 +61,26 @@ body {
     font-size: 75px;
     color: rgb(255, 255, 255);
     text-shadow: rgb(190, 2, 2) 1px 0 10px
+}
+
+#navBar {
+    background-color: #101111;
+    width: 90px;
+    height: 1000px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#homeButton {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 10px;
+    left: 18px;
+    cursor: pointer;
+}
+
+#homeButton.clicked {
+    opacity: 0.5; 
 }

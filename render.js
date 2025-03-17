@@ -77,4 +77,8 @@ const renderList = () => {
     localStorage.setItem("tasks", JSON.stringify(taskList))
 }
 
+document.getElementById("homeButton").addEventListener("click", function () {
+    this.classList.toggle("clicked");
+});
+
 renderList()
