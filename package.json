@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-builder build"
   },
-  "dependencies": {
+  "devDependencies": {
+    "electron-builder": "^25.1.8",
     "electron": "^35.0.1"
-    }
+  },
+  "build": {
+    "files": "!node_modules${/*}"
   }
+}

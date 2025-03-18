@@ -4,6 +4,7 @@ const input = document.getElementById("input")
 const deleteTask = document.getElementById("delete")
 const refresh = document.getElementById("refresh")
 const delSingleTask = document.getElementById("delTask")
+const deadlineInput = document.getElementById("deadlineInput")
 
 let taskList = []
 
@@ -14,12 +15,26 @@ try {
     taskList = []
 }
 
+
+flatpickr(deadlineInput, {
+    enableTime: true,
+    dateFormat: "d/m/Y H:i",
+    time_24hr: true
+})
+
 button.onclick = () => {
-    inputValue = input.value.trim()
+    let inputValue = input.value.trim()
+    let deadlineValue = deadlineInput.value.trim()
     if(inputValue !== "") {
-        taskList.push(inputValue)
+        let taskObjects = {
+            text: inputValue,
+            deadline: deadlineValue || "Brak"
+        }
+
+        taskList.push(taskObjects)
         renderList()
         input.value = ""
+        deadlineInput.value = ""
     } else {
         alert("Nie możesz dodać pustego pola!")
     }
@@ -35,13 +50,14 @@ const renderList = () => {
     task.innerHTML = ""
     taskListContainer = document.createElement("div")
 
-    taskList.forEach((taskText, index) => {
+    taskList.forEach((taskObj, index) => {
+        let {text, deadline} = taskObj
         let data = new Date()
         let dzien = data.getUTCDate()
         let miesiac = data.getUTCMonth() + 1
         let rok = data.getUTCFullYear()
         let dataDodania = "Data dodania: "
-
+        
         const taskItem = document.createElement("div")
         taskItem.style.display = "flex"
         taskItem.style.alignItems = "center"
@@ -49,11 +65,12 @@ const renderList = () => {
         taskItem.style.marginTop = "5px"
 
         const taskTextElement = document.createElement("span")
-        taskTextElement.innerHTML = `- ${taskText}
+        taskTextElement.innerHTML = `- ${text}
         <span style="font-size: 12px; color: gray;">${dataDodania}
         <span style="font-size: 14px; font-weight: bold;">${dzien}</span> /
         <span style="font-size: 14px; font-weight: bold;">${miesiac}</span> /
         <span style="font size: 14px; font-weight: bold;">${rok}</span>
+        <span style="font size: 50px; font-weight: bold; color: red;">| Dead Line: ${deadline}</span>
         </span>`;
 
         const removeButton = document.createElement("button")
