@@ -5,6 +5,10 @@ const deleteTask = document.getElementById("delete")
 const refresh = document.getElementById("refresh")
 const delSingleTask = document.getElementById("delTask")
 const deadlineInput = document.getElementById("deadlineInput")
+const home = document.getElementById("homeButton")
+const settings = document.getElementById("settingsButton")
+const homeSection = document.getElementById("homeSection")
+const settingsSection = document.getElementById("settingsSection")
 
 let taskList = []
 
@@ -96,6 +100,16 @@ const renderList = () => {
 
 document.getElementById("homeButton").addEventListener("click", function () {
     this.classList.toggle("clicked");
+    settings.classList.remove("clicked")
+    homeSection.style.display = "block"
+    settingsSection.style.display = "none"
 });
+document.getElementById("settingsButton").addEventListener("click", function () {
+    this.classList.toggle("clicked");
+    home.classList.remove("clicked")
+    settingsSection.style.display = "block"
+    homeSection.style.display = "none"
+    
+})
 
 renderList()

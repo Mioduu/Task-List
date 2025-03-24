@@ -8,18 +8,29 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <h1 id ="title">Task Lista</h1>
-    <div class = "container">
-        <input type="text" id="deadlineInput" placeholder="Wybierz deadline">
-        <button id="button">Add Task</button>
-        <input id="input" placeholder="Enter Task here:"/>
+    <div id = "navBar">
+        <img src="icons/icons8-home-50.png" alt="home" id="homeButton">
+        <img src="icons/icons8-settings-50.png" alt="settings" id="settingsButton">
     </div>
-    <div id = "navBar"></div>
-    <img src="icons/icons8-home-50.png" alt="home" id="homeButton">
-    <img src="icons/icons8-settings-50.png" alt="settings" id="settingsButton">
-    <div id = "delTask"></div>
-    <div id="task"></div>
+
+    <div id="homeSection">
+        <h1 id ="title">Task Lista</h1>
+        <div class = "container">
+            <input type="text" id="deadlineInput" placeholder="Wybierz deadline">
+            <button id="button">Add Task</button>
+            <input id="input" placeholder="Enter Task here:"/>
+        </div>
+        <div id = "delTask"></div>
+        <div id="task"></div>
+    </div>
+    <div id="settingsSection" style="display: none;">
+        <h1 id="settingsTitle">Settings</h1>
+        <div class = "icons">
+            <img src="icons/icons8-moon-50.png" alt="nightMode" id="nightModeButton">
+            <img src="icons/icons8-sun-50.png" alt="dayMode" id="dayModeButton">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="render.js"></script>
 </body>
 </html>
