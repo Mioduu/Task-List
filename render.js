@@ -112,4 +112,42 @@ document.getElementById("settingsButton").addEventListener("click", function () 
     
 })
 
+document.getElementById("nightModeButton").addEventListener("click", function () {
+    document.body.style.background = "#181A1B"; 
+    document.body.style.color = "#CCCCCC";
+
+    document.getElementById("input").style.background = "#3B4048";
+    document.getElementById("input").style.color = "#FFFFFF";
+    document.getElementById("input").style.border = "2px solid #555";
+
+    document.getElementById("button").style.backgroundColor = "#2BAE66";
+    document.getElementById("button").style.color = "#FFFFFF";
+
+    document.getElementById("task").style.color = "#3498DB";
+    document.getElementById("task").style.borderColor = "#3B4048";
+
+    document.getElementById("title").style.color = "#FFFFFF";
+
+    document.getElementById("navBar").style.backgroundColor = "#101111";
+});
+
+document.getElementById("dayModeButton").addEventListener("click", function () {
+    document.body.style.background = "#2B2B2B";  
+    document.body.style.color = "#E0E0E0";  
+
+    document.getElementById("input").style.background = "#3A3A3A";  
+    document.getElementById("input").style.color = "#E0E0E0";
+    document.getElementById("input").style.border = "2px solid #5A5A5A";
+
+    document.getElementById("button").style.backgroundColor = "#3D85C6";  
+    document.getElementById("button").style.color = "#FFFFFF";
+
+    document.getElementById("task").style.color = "#1A936F";  
+    document.getElementById("task").style.borderColor = "#5A5A5A";
+
+    document.getElementById("title").style.color = "#D0D0D0";  
+
+    document.getElementById("navBar").style.backgroundColor = "#383838";  
+});
+
 renderList()
