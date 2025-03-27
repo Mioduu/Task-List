@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+const { app, BrowserWindow, Notification, ipcMain } = require("electron")
 
 let mainWindow;
 
@@ -7,7 +7,8 @@ app.whenReady().then(() => {
         width: 1280,
         height: 960,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false
         }
     });
 
@@ -23,3 +24,10 @@ app.on('window-all-closed', () => {
         app.quit();
     }
 });
+
+ipcMain.on("Deadline Reached", (event, taskName) => {
+    new Notification({
+        title: "Przypomnienie",
+        body: `Upłynął czas na zadanie ${taskName}`
+    }).show();
+})

@@ -1,3 +1,5 @@
+const { ipcRenderer } = require("electron")
+
 const task = document.getElementById("task")
 const button = document.getElementById("button")
 const input = document.getElementById("input")
@@ -149,5 +151,38 @@ document.getElementById("dayModeButton").addEventListener("click", function () {
 
     document.getElementById("navBar").style.backgroundColor = "#383838";  
 });
+
+function parseDeadline(deadlineString) {
+    const parts = deadlineString.split(" ")
+    if(parts.length !== 2) return null
+
+    const dateParts = parts[0].split("/")
+    const timeParts = parts[1].split(":")
+
+    if (dateParts.length !== 3 || timeParts.length !== 2) return null
+
+    return new Date(
+        dateParts[2],
+        dateParts[1] - 1,
+        dateParts[0],
+        timeParts[0],
+        timeParts[1]
+    )
+}
+
+function checkDeadline() {
+    const now = new Date()
+    taskList.forEach(task => {
+        if(task.deadline && task.deadline !== "Brak") {
+            let deadlineDate = parseDeadline(task.deadline)
+
+            if(deadlineDate && deadlineDate <= now) {
+                ipcRenderer.send("Deadline Reached", task.text)
+            }
+        }
+    })
+}
+
+setInterval(checkDeadline, 60000)
 
 renderList()

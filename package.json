@@ -7,10 +7,13 @@
     "package": "electron-builder build"
   },
   "devDependencies": {
-    "electron-builder": "^25.1.8",
-    "electron": "^35.0.1"
+    "electron": "^35.0.1",
+    "electron-builder": "^25.1.8"
   },
   "build": {
     "files": "!node_modules${/*}"
+  },
+  "dependencies": {
+    "electron-auto-launch": "^5.0.7"
   }
 }
