@@ -11,7 +11,20 @@
     "electron-builder": "^25.1.8"
   },
   "build": {
-    "files": "!node_modules${/*}"
+    "appId": "org.Task.Lista",
+    "files": [
+      "**/*",
+      "!node_modules/**/*"
+    ],
+    "productName": "TaskLista",
+    "win": {
+      "target": "nsis"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "Mioduu",
+      "repo": "Task-List"
+    }
   },
   "dependencies": {
     "electron-auto-launch": "^5.0.7"

@@ -3,9 +3,6 @@ const { ipcRenderer } = require("electron")
 const task = document.getElementById("task")
 const button = document.getElementById("button")
 const input = document.getElementById("input")
-const deleteTask = document.getElementById("delete")
-const refresh = document.getElementById("refresh")
-const delSingleTask = document.getElementById("delTask")
 const deadlineInput = document.getElementById("deadlineInput")
 const home = document.getElementById("homeButton")
 const settings = document.getElementById("settingsButton")
@@ -88,8 +85,11 @@ const renderList = () => {
         removeButton.style.height = "35px"
         removeButton.style.cursor = "pointer"
 
-        removeButton.onclick = () => removeTask(index)
+        const checkIn = document.createElement("input")
+        checkIn.type = "checkbox"
 
+        removeButton.onclick = () => removeTask(index)
+        checkIn.onclick = () => removeTask(index)
         taskItem.appendChild(taskTextElement)
         taskItem.appendChild(removeButton)
 
@@ -152,6 +152,8 @@ document.getElementById("dayModeButton").addEventListener("click", function () {
     document.getElementById("navBar").style.backgroundColor = "#383838";  
 });
 
+window.electron.send("Test", "Test message");
+
 function parseDeadline(deadlineString) {
     const parts = deadlineString.split(" ")
     if(parts.length !== 2) return null
@@ -182,6 +184,8 @@ function checkDeadline() {
         }
     })
 }
+
+
 
 setInterval(checkDeadline, 60000)
 
