@@ -8,14 +8,19 @@ const home = document.getElementById("homeButton")
 const settings = document.getElementById("settingsButton")
 const homeSection = document.getElementById("homeSection")
 const settingsSection = document.getElementById("settingsSection")
+const finishedTaskSection = document.getElementById("finishedTasksSection")
 
 let taskList = []
+let finishedTasks = []
+
 
 try {
     taskList = JSON.parse(localStorage.getItem("tasks")) || []
+    finishedTasks = JSON.parse(localStorage.getItem("finishedTasks")) || []
 } catch (e) {
     console.error("Błąd parsowania z LocalStorage: ", e)
     taskList = []
+    finishedTasks = []
 }
 
 
@@ -72,8 +77,8 @@ const renderList = () => {
         <span style="font-size: 12px; color: gray;">${dataDodania}
         <span style="font-size: 14px; font-weight: bold;">${dzien}</span> /
         <span style="font-size: 14px; font-weight: bold;">${miesiac}</span> /
-        <span style="font size: 14px; font-weight: bold;">${rok}</span>
-        <span style="font size: 50px; font-weight: bold; color: red;">| Dead Line: ${deadline}</span>
+        <span style="font-size: 14px; font-weight: bold;">${rok}</span>
+        <span style="font-size: 50px; font-weight: bold; color: red;">| Dead Line: ${deadline}</span>
         </span>`;
 
         const removeButton = document.createElement("button")
@@ -87,11 +92,31 @@ const renderList = () => {
 
         const checkIn = document.createElement("input")
         checkIn.type = "checkbox"
+        checkIn.style.color = "white"
+        checkIn.style.border = "none"
+        checkIn.style.width = "100px"
+        checkIn.style.height = "35px"
+        checkIn.style.cursor = "pointer"
+
+        checkIn.addEventListener("change", function () {
+            if(this.checked) {
+                taskItem.classList.add("fade-out")
+
+                setTimeout(() => {
+                    finishedTasks.push(taskObj)
+                    taskList.splice(index, 1)
+                    localStorage.setItem("finishedTasks", JSON.stringify(finishedTasks))
+                    localStorage.setItem("tasks", JSON.stringify(taskList))
+                    renderList()
+                    renderFinishedTasks()
+                }, 500)
+            }
+        })
 
         removeButton.onclick = () => removeTask(index)
-        checkIn.onclick = () => removeTask(index)
         taskItem.appendChild(taskTextElement)
         taskItem.appendChild(removeButton)
+        taskItem.appendChild(checkIn)
 
         taskListContainer.appendChild(taskItem)
     })
@@ -100,19 +125,67 @@ const renderList = () => {
     localStorage.setItem("tasks", JSON.stringify(taskList))
 }
 
+const renderFinishedTasks = () => {
+    const finishedTasksContainer = document.getElementById("finishedTasks")
+    finishedTasksContainer.innerHTML = ""
+
+    finishedTasks.forEach((taskObj, index) => {
+        const taskItem = document.createElement("div")
+        taskItem.style.display = "flex"
+        taskItem.style.alignItems = "center"
+        taskItem.style.gap = "10px"
+        taskItem.style.marginTop = "5px"
+
+        const taskTextElement = document.createElement("span")
+        taskTextElement.innerHTML = `✔ ${taskObj.text} (Deadline: ${taskObj.deadline})`
+        taskTextElement.style.color = "green"
+
+        const removeButton = document.createElement("button")
+        removeButton.textContent = "Delete"
+        removeButton.style.background = "#D63031"
+        removeButton.style.color = "white"
+        removeButton.style.border = "none"
+        removeButton.style.width = "100px"
+        removeButton.style.height = "35px"
+        removeButton.style.cursor = "pointer"
+
+        removeButton.onclick = () => {
+            finishedTasks.splice(index, 1)
+            localStorage.setItem("finishedTasks", JSON.stringify(finishedTasks))
+            renderFinishedTasks()
+        }
+
+        taskItem.appendChild(taskTextElement)
+        taskItem.appendChild(removeButton)
+        finishedTasksContainer.appendChild(taskItem)
+    })
+}
+
 document.getElementById("homeButton").addEventListener("click", function () {
     this.classList.toggle("clicked");
     settings.classList.remove("clicked")
+    checkList.classList.remove("clicked")
     homeSection.style.display = "block"
     settingsSection.style.display = "none"
+    finishedTaskSection.style.display = "none"
+    
 });
 document.getElementById("settingsButton").addEventListener("click", function () {
-    this.classList.toggle("clicked");
+    this.classList.toggle("clicked")
     home.classList.remove("clicked")
+    checkList.classList.remove("clicked")
     settingsSection.style.display = "block"
     homeSection.style.display = "none"
-    
+    finishedTaskSection.style.display = "none"
 })
+document.getElementById("checkList").addEventListener("click", function () {
+    this.classList.toggle("clicked")
+    home.classList.remove("clicked")
+    settings.classList.remove("clicked")
+    finishedTaskSection.style.display = "block"
+    homeSection.style.display = "none"
+    settingsSection.style.display = "none"
+});
 
 document.getElementById("nightModeButton").addEventListener("click", function () {
     document.body.style.background = "#181A1B"; 
@@ -152,8 +225,6 @@ document.getElementById("dayModeButton").addEventListener("click", function () {
     document.getElementById("navBar").style.backgroundColor = "#383838";  
 });
 
-window.electron.send("Test", "Test message");
-
 function parseDeadline(deadlineString) {
     const parts = deadlineString.split(" ")
     if(parts.length !== 2) return null
@@ -190,3 +261,4 @@ function checkDeadline() {
 setInterval(checkDeadline, 60000)
 
 renderList()
+renderFinishedTasks()
