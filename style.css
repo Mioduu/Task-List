@@ -46,6 +46,31 @@ body {
     cursor: pointer;
 }
 
+#important {
+    justify-content: center;
+    height: 50px;
+    width: 250px;
+    background-color: #2BAE66;
+    font-size: 30px;
+    color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 100px;
+    border-radius: 10px;
+
+}
+
+#important:hover {
+    height: 50px;
+    width: 250px;
+    background-color: #1E7A63;
+    font-size: 30px;
+    color: black;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    border: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
 #task {
     margin-left: 85px;
     color: #3498DB;
@@ -182,3 +207,4 @@ body {
     border-color: #3B4048;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
+

@@ -9,6 +9,7 @@ const settings = document.getElementById("settingsButton")
 const homeSection = document.getElementById("homeSection")
 const settingsSection = document.getElementById("settingsSection")
 const finishedTaskSection = document.getElementById("finishedTasksSection")
+const important = document.getElementById("important")
 
 let taskList = []
 let finishedTasks = []
@@ -33,16 +34,19 @@ flatpickr(deadlineInput, {
 button.onclick = () => {
     let inputValue = input.value.trim()
     let deadlineValue = deadlineInput.value.trim()
+    let importantValue = important.value.trim()
     if(inputValue !== "") {
         let taskObjects = {
             text: inputValue,
-            deadline: deadlineValue || "Brak"
+            deadline: deadlineValue || "Brak",
+            important: importantValue
         }
 
         taskList.push(taskObjects)
         renderList()
         input.value = ""
         deadlineInput.value = ""
+        important.value = ""
     } else {
         alert("Nie możesz dodać pustego pola!")
     }
@@ -59,7 +63,7 @@ const renderList = () => {
     taskListContainer = document.createElement("div")
 
     taskList.forEach((taskObj, index) => {
-        let {text, deadline} = taskObj
+        let {text, deadline, important} = taskObj
         let data = new Date()
         let dzien = data.getUTCDate()
         let miesiac = data.getUTCMonth() + 1
@@ -79,6 +83,7 @@ const renderList = () => {
         <span style="font-size: 14px; font-weight: bold;">${miesiac}</span> /
         <span style="font-size: 14px; font-weight: bold;">${rok}</span>
         <span style="font-size: 50px; font-weight: bold; color: red;">| Dead Line: ${deadline}</span>
+        <span style="font-size: 50px; font-weight: bold; color: #8B0000;"> | ${important}</span>
         </span>`;
 
         const removeButton = document.createElement("button")

@@ -17,8 +17,14 @@
     <div id="homeSection">
         <h1 id ="title">Task Lista</h1>
         <div class = "container">
-            <input type="text" id="deadlineInput" placeholder="Wybierz deadline">
+            <input type="text" id="deadlineInput" placeholder="Select deadline">
             <button id="button">Add Task</button>
+            <select for="importance" id="important">
+                <option value="TODO ASAP">TODO ASAP</option>
+                <option value="VERY IMPORTANT">Very Important</option>
+                <option value="CAN WAIT">Can Wait</option>
+                <option value="NOT IMPORTANT">Not Important</option>
+            </select>
             <input id="input" placeholder="Enter Task here:"/>
         </div>
         <div id = "delTask"></div>
