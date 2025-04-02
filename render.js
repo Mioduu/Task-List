@@ -263,7 +263,7 @@ function checkDeadline() {
 
 
 
-setInterval(checkDeadline, 60000)
+setInterval(checkDeadline, 15000)
 
 renderList()
 renderFinishedTasks()
