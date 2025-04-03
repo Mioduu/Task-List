@@ -209,6 +209,7 @@ document.getElementById("nightModeButton").addEventListener("click", function ()
     document.getElementById("title").style.color = "#FFFFFF";
 
     document.getElementById("navBar").style.backgroundColor = "#101111";
+
 });
 
 document.getElementById("dayModeButton").addEventListener("click", function () {
