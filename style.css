@@ -12,13 +12,62 @@ body {
 
 }
 
+::placeholder {
+    text-align: center;
+}
+
+#homeSection {
+    gap: 2px;
+}
+
 .container {
     justify-content: center;
     display: flex;
     gap: 2px;
 }
 
+#menu {
+    background-color: #101111;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border:#101111;
+    border-radius: 50px;
+}
+
+#menuButton {
+    height: 70px;
+    width: 70px;
+    position: absolute;
+    z-index: 2;
+    top: 10px;
+    left: 10px;
+}
+
+#menuButton:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+#returnMenu {
+    display: none;
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+}
+
+#returnMenu:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
 #input {
+    order: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,7 +80,7 @@ body {
 }
 
 #button {
-    order: 1;
+    order: 4;
     height: 50px;
     width: 250px;
     background-color: #2BAE66;
@@ -44,7 +93,6 @@ body {
 }
 
 #button:hover {
-    order: 1;
     height: 50px;
     width: 250px;
     background-color: #1E7A63;
@@ -57,10 +105,12 @@ body {
 }
 
 #important {
+    order: 3;
     justify-content: center;
+    justify-items: center;
     height: 50px;
-    width: 250px;
-    background-color: #2BAE66;
+    width: 275px;
+    background-color: #cccccc79;
     font-size: 30px;
     color: white;
     font-family: "JetBrains Mono", monospace;
@@ -71,8 +121,8 @@ body {
 
 #important:hover {
     height: 50px;
-    width: 250px;
-    background-color: #1E7A63;
+    width: 275px;
+    background-color: #cccccc79;
     font-size: 30px;
     color: black;
     font-family: "JetBrains Mono", monospace;
@@ -93,17 +143,19 @@ body {
     display: grid;
     place-items: center;
     position: relative;
-    top: 50px;
-    font-family: "JetBrains Mono", monospace;
-    font-size: 75px;
+    top: 25px;
+    font-family: "JetBrains Mono" , monospace;
+    font-size: 85px;
+    font-weight: 900;
     color: rgb(255, 255, 255);
-    text-shadow: rgb(190, 2, 2) 1px 0 10px
+    text-shadow: #495053; 
 }
 
 
 #navBar {
+    display: none;
     background-color: #101111;
-    width: 250px;
+    width: 400px;
     height: 90px;
     position: absolute;
     top: 0px;
@@ -113,11 +165,12 @@ body {
 }
 
 #homeButton {
+    order: 1;
     width: 50px;
     height: 50px;
     position: absolute;
     top: 22px;
-    left: 25px;
+    left: 50px;
     cursor: pointer;
 }
 
@@ -126,11 +179,12 @@ body {
 }
 
 #settingsButton {
+    order: 3;
     width: 50px;
     height: 50px;
     position: absolute;
     top: 22px;
-    right: 18px;
+    left: 250px;
     cursor: pointer;
 }
 
@@ -139,12 +193,18 @@ body {
 }
 
 #deadlineInput {
+    background-color: rgba(255, 255, 255, 0.966);
+    order: 2;
     height: 50px;
-    width: 250px;
+    width: 228px;
     border: 100px;
     border-radius: 10px;
     font-size: 20px;
     font-family: "JetBrains Mono", monospace;
+}
+
+#deadlineInput::placeholder {
+    color: red;
 }
 
 #settingsSection {
@@ -173,8 +233,8 @@ body {
 
 #nightModeButton {
     flex: 0;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
 }
 
@@ -184,8 +244,8 @@ body {
 
 #dayModeButton {
     flex: 1;
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     cursor: pointer;
 }
 
@@ -199,11 +259,12 @@ body {
 }
 
 #checkList {
+    order: 2;
     width: 50px;
     height: 50px;
     position: absolute;
     top: 24px;
-    left: 105px;
+    left: 150px;
     cursor: pointer;
 }
 
@@ -230,4 +291,3 @@ body {
     top: 100px;
     font-family: "JetBrains Mono", monospace;
 }
-

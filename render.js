@@ -10,6 +10,9 @@ const homeSection = document.getElementById("homeSection")
 const settingsSection = document.getElementById("settingsSection")
 const finishedTaskSection = document.getElementById("finishedTasksSection")
 const important = document.getElementById("important")
+const menuButton = document.getElementById("menuButton")
+const returnMenu = document.getElementById("returnMenu")
+const navigationBar = document.getElementById("navBar")
 
 let taskList = []
 let finishedTasks = []
@@ -78,12 +81,12 @@ const renderList = () => {
 
         const taskTextElement = document.createElement("span")
         taskTextElement.innerHTML = `- ${text}
+        <span style="font-size: 25px; font-weight: bold; color: red;">|Dead Line: ${deadline}|</span> 
+        <span style="font-size: 25px; font-weight: bold; color:rgba(48, 255, 110, 0.89);">|${important}|</span>
         <span style="font-size: 12px; color: gray;">${dataDodania}
         <span style="font-size: 14px; font-weight: bold;">${dzien}</span> /
         <span style="font-size: 14px; font-weight: bold;">${miesiac}</span> /
         <span style="font-size: 14px; font-weight: bold;">${rok}</span>
-        <span style="font-size: 50px; font-weight: bold; color: red;">| Dead Line: ${deadline}</span>
-        <span style="font-size: 50px; font-weight: bold; color: #8B0000;"> | ${important}</span>
         </span>`;
 
         const removeButton = document.createElement("button")
@@ -192,12 +195,28 @@ document.getElementById("checkList").addEventListener("click", function () {
     settingsSection.style.display = "none"
 });
 
+document.getElementById("menuButton").addEventListener("click", function () {
+    this.classList.toggle("clicked")
+    this.style.display = "none"
+    returnMenu.style.display = "block"
+    navigationBar.style.display = "block"
+
+})
+
+document.getElementById("returnMenu").addEventListener("click", function () {
+    this.classList.toggle("clicked")
+    this.style.display = "none"
+    menuButton.style.display = "block"
+    navigationBar.style.display = "none"
+})
+
+
+
 document.getElementById("nightModeButton").addEventListener("click", function () {
     document.body.style.background = "#181A1B"; 
-    document.body.style.color = "#CCCCCC";
 
-    document.getElementById("input").style.background = "#3B4048";
-    document.getElementById("input").style.color = "#FFFFFF";
+    document.getElementById("input").style.background = "#FFFFFF";
+    document.getElementById("input").style.color = "black"
     document.getElementById("input").style.border = "2px solid #555";
 
     document.getElementById("button").style.backgroundColor = "#2BAE66";
@@ -214,11 +233,10 @@ document.getElementById("nightModeButton").addEventListener("click", function ()
 
 document.getElementById("dayModeButton").addEventListener("click", function () {
     document.body.style.background = "#2B2B2B";  
-    document.body.style.color = "#E0E0E0";  
 
-    document.getElementById("input").style.background = "#3A3A3A";  
-    document.getElementById("input").style.color = "#E0E0E0";
-    document.getElementById("input").style.border = "2px solid #5A5A5A";
+    document.getElementById("input").style.background = "#FFFFFF";
+    document.getElementById("input").style.color = "black"
+    document.getElementById("input").style.border = "2px solid #555";
 
     document.getElementById("button").style.backgroundColor = "#3D85C6";  
     document.getElementById("button").style.color = "#FFFFFF";
