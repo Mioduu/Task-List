@@ -13,6 +13,7 @@ const important = document.getElementById("important")
 const menuButton = document.getElementById("menuButton")
 const returnMenu = document.getElementById("returnMenu")
 const navigationBar = document.getElementById("navBar")
+const selectedFilter = document.getElementById("filter")
 
 let taskList = []
 let finishedTasks = []
@@ -42,7 +43,7 @@ button.onclick = () => {
         let taskObjects = {
             text: inputValue,
             deadline: deadlineValue || "Brak",
-            important: importantValue
+            important: importantValue.toUpperCase().trim()
         }
 
         taskList.push(taskObjects)
@@ -131,6 +132,7 @@ const renderList = () => {
     task.appendChild(taskListContainer)
 
     localStorage.setItem("tasks", JSON.stringify(taskList))
+    filter()
 }
 
 const renderFinishedTasks = () => {
@@ -279,6 +281,57 @@ function checkDeadline() {
         }
     })
 }
+
+
+
+function filter() {
+    const selectedValue = selectedFilter.value;
+    
+    
+    const taskItems = document.querySelectorAll('#task div > div')
+    taskItems.forEach(taskItem => {
+        taskItem.style.display = "block"
+    })
+
+    
+    if (selectedValue === "All") return
+
+    
+    taskItems.forEach((taskItem, index) => {
+        if (index >= taskList.length) return
+        
+        const taskObj = taskList[index]
+        const taskPriority = taskObj.important.trim().toUpperCase()
+        
+        let shouldShow = false
+        switch(selectedValue) {
+            case "Not Defined":
+                shouldShow = taskPriority === "NOT DEFINED"
+                break
+            case "TODO ASAP":
+                shouldShow = taskPriority === "TODO ASAP"
+                break
+            case "VERY IMPORTANT":
+                shouldShow = taskPriority === "VERY IMPORTANT"
+                break
+            case "CAN WAIT":
+                shouldShow = taskPriority === "CAN WAIT"
+                break
+            case "NOT IMPORTANT":
+                shouldShow = taskPriority === "NOT IMPORTANT"
+                break
+            case "OPTIONAL":
+                shouldShow = taskPriority === "OPTIONAL"
+                break
+            default:
+                shouldShow = false
+        }
+        
+        taskItem.style.display = shouldShow ? "block" : "none";
+    });
+}
+
+selectedFilter.addEventListener("change", filter)
 
 
 

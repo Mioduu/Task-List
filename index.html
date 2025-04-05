@@ -20,7 +20,25 @@
 
     <div id="homeSection">
         <h1 id ="title">Task List</h1>
-        <div class = "container">
+        <img src="icons/icons8-filter-50.png" alt="filtericon" id="filterIcon">
+                <select id="filter">
+                    <optgroup label = "Importance">
+                        <option value="All">All</option>
+                        <option value="Not Defined">NOT DEFINED</option>
+                        <option value="TODO ASAP">TODO ASAP</option>
+                        <option value="VERY IMPORTANT">Very Important</option>
+                        <option value="CAN WAIT">Can Wait</option>
+                        <option value="NOT IMPORTANT">Not Important</option>
+                        <option value="OPTIONAL">Optional</option>
+                    </optgroup>
+                    <optgroup label = "Deadline">
+                        <option value="Latest Added">Latest Added</option>
+                        <option value="Oldest">Oldest Added</option>
+                        <option value="Most Urgent">Most Urgent</option>
+                        <option value="Least Urgent">Least Urgent</option>
+                    </optgroup>
+                </select>
+                <div class = "container">
             <button id="button">Add Task</button>
             <input type="text" id="deadlineInput" placeholder="Select deadline">
             <select for="importance" id="important">
